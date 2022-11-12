@@ -2,11 +2,24 @@
 <header>
     <title>The first Malay-English Dictionary page</title>
 </header>
+
 <body>
-    <div>Type a Malay word and get the English translation.</div>
     <div><span>Last update: </span><span id="time-container"></span></div>
-    <button onclick="getWords()">Get word data</button>
-    <div id="result-container"></div>
+    <div>Type a Malay word and get the English translation.</div>
+
+    <div>
+        <label for="data-input">Your Malay word:</label>
+        <input type="text" id="data-input">
+        <button onclick="sendData()">Submit word:</button>
+    </div>
+    <div>
+        <div id="sent-data-container"></div>
+    </div>
+    <hr>
+    <div>
+        <button onclick="getWords()">Get word data</button>
+        <div id="result-container"></div>
+    </div>
 </body>
 <script>
     var xhr = null;
@@ -44,5 +57,33 @@
     (function () {
         getDate();
     })();
+
+    function sendDataCallback() {
+        // Check response is ready or not
+        if (xhr.readyState == 4 && xhr.status == 201) {
+            console.log("Data creation response received!");
+            getDate();
+            dataDiv = document.getElementById('sent-data-container');
+            // Set current data text
+            dataDiv.innerHTML = xhr.responseText;
+        }
+    }
+
+    function sendData() {
+        dataToSend = document.getElementById('data-input').value;
+        if (!dataToSend) {
+            console.log("Data is empty.");
+            return;
+        }
+        console.log("Sending data: " + dataToSend);
+        xhr = getXmlHttpRequestObject();
+        xhr.onreadystatechange = sendDataCallback;
+        // asynchronous requests
+        xhr.open("POST", "http://localhost:6969/words", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        // Send the request over the network
+        xhr.send(JSON.stringify({ "data": dataToSend }));
+    }
 </script>
+
 </html>

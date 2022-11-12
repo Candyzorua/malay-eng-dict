@@ -1,0 +1,48 @@
+<html>
+<header>
+    <title>The first Malay-English Dictionary page</title>
+</header>
+<body>
+    <div>Type a Malay word and get the English translation.</div>
+    <div><span>Last update: </span><span id="time-container"></span></div>
+    <button onclick="getWords()">Get word data</button>
+    <div id="result-container"></div>
+</body>
+<script>
+    var xhr = null;
+    getXmlHttpRequestObject = function () {
+        if (!xhr) {
+            // Create a new XMLHttpRequest object 
+            xhr = new XMLHttpRequest();
+        }
+        return xhr;
+    };
+    function dataCallback() {
+        // Check response is ready or not
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("User data received!");
+            getDate();
+            dataDiv = document.getElementById('result-container');
+            // Set current data text
+            dataDiv.innerHTML = xhr.responseText;
+        }
+    }
+    function getWords() {
+        console.log("Get words...");
+        xhr = getXmlHttpRequestObject();
+        xhr.onreadystatechange = dataCallback;
+        // asynchronous requests
+        xhr.open("GET", "http://localhost:6969/words", true);
+        // Send the request over the network
+        xhr.send(null);
+    }
+    function getDate() {
+        date = new Date().toString();
+        document.getElementById('time-container').textContent
+            = date;
+    }
+    (function () {
+        getDate();
+    })();
+</script>
+</html>

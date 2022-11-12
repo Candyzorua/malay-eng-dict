@@ -9,10 +9,11 @@ CORS(app)
 
 def findtranslation (malayword):
     with open("malay-eng-dict.json", "r") as f:
-        if malayword not in f:
+        data = json.load(f)
+        if malayword not in data:
             return ("Sorry, word not found.")
         else:
-            engword = f[malayword]
+            engword = data[malayword]
             return f"English translation(s): {engword}"
 
 @app.route("/")

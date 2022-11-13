@@ -16,6 +16,7 @@
 <body>
     <button onclick="makeSepText(this.innerHTML)">aku suka kamu</button>
     <div id="septext"></div>
+    <p id="translation"></p>
     <script>
         function makeSepText(textChunk) {
             const oriTextArray = textChunk.split(" ");
@@ -23,27 +24,20 @@
             // separating out and cleaning words
             for (const word of oriTextArray) {
                 var lowerword = word.toLowerCase();
-                var cleanword = lowerword.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-                var finalword = cleanword.replace(/\s{2,}/g," ");
+                var cleanword = lowerword.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                var finalword = cleanword.replace(/\s{2,}/g, " ");
                 newTextArray.push(finalword);
             }
             //making new span elements
             for (const word of newTextArray) {
                 const node = document.createElement("span");
-                const blank = document.createElement("span");
                 node.innerHTML = word;
+                const blank = document.createElement("span");
                 blank.innerHTML = " ";
                 document.getElementById("septext").appendChild(node);
                 document.getElementById("septext").appendChild(blank);
             }
         }
-          
-        const dictionary = {
-            "aku" : "I",
-            "suka" : "like",
-            "kamu" : "you"
-        } 
-
     </script>
 </body>
 

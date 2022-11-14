@@ -1,25 +1,25 @@
 <html>
 <header>
     <title>Malay-English Dictionary</title>
+    <style>
+
+    </style>
 </header>
 
 <body>
     <div><span>Last update: </span><span id="time-container"></span></div>
-    <div>Type a Malay word and get the English translation.</div>
+    <div>Type a Malay sentence and get the English translation.</div>
 
     <div>
-        <label for="data-input">Your Malay word:</label>
+        <label for="data-input">Your Malay sentence:</label>
         <input type="text" id="data-input">
-        <button onclick="sendData()">Submit word:</button>
+        <button onclick="sendData()">Submit sentence:</button>
     </div>
     <div>
-        <div id="sent-data-container"></div>
+        <h1 id="malaytext"></h1>
+        <h2 id="engtext"></h2>
     </div>
     <hr>
-    <div>
-        <button onclick="getWords()">Get word data</button>
-        <div id="result-container"></div>
-    </div>
 </body>
 <script>
     var xhr = null;
@@ -30,25 +30,7 @@
         }
         return xhr;
     };
-    function dataCallback() {
-        // Check response is ready or not
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("User data received!");
-            getDate();
-            dataDiv = document.getElementById('result-container');
-            // Set current data text
-            dataDiv.innerHTML = xhr.responseText;
-        }
-    }
-    function getWords() {
-        console.log("Get words...");
-        xhr = getXmlHttpRequestObject();
-        xhr.onreadystatechange = dataCallback;
-        // asynchronous requests
-        xhr.open("GET", "http://localhost:6969/words", true);
-        // Send the request over the network
-        xhr.send(null);
-    }
+
     function getDate() {
         date = new Date().toString();
         document.getElementById('time-container').textContent
@@ -63,9 +45,25 @@
         if (xhr.readyState == 4 && xhr.status == 201) {
             console.log("Data creation response received!");
             getDate();
-            dataDiv = document.getElementById('sent-data-container');
             // Set current data text
-            dataDiv.innerHTML = xhr.responseText;
+            response = xhr.responseText;
+            const translationsdict = JSON.parse(response)
+            console.log(translationsdict)
+            for (const word in translationsdict) {
+                console.log(word)
+                const node = document.createElement("span");
+                node.innerHTML = word;
+                node.addEventListener("mouseover", function () {
+                    document.getElementById("engtext").innerHTML = translationsdict[word];
+                });
+                node.addEventListener("mouseout", function () {
+                    document.getElementById("engtext").innerHTML = "";
+                });
+                const blank = document.createElement("span");
+                blank.innerHTML = " "
+                document.getElementById("malaytext").appendChild(node);
+                document.getElementById("malaytext").appendChild(blank);
+            }
         }
     }
 

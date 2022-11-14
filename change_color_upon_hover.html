@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .text {
+            font-size: 20px;
+        }
+
+        span:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="oritext">aku, suka kamu.</p>
+    <h1 id="septext"></h1>
+    <h2 id="translation"></h2>
+    <script>
+        function makeSepText(textChunk) {
+            const oriTextArray = textChunk.split(" ");
+            const newTextArray = []
+            // separating out and cleaning words
+            for (const word of oriTextArray) {
+                var lowerword = word.toLowerCase();
+                var cleanword = lowerword.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                var finalword = cleanword.replace(/\s{2,}/g, " ");
+                newTextArray.push(finalword);
+            }
+            //making new span elements
+            for (const word of newTextArray) {
+                const node = document.createElement("span");
+                node.innerHTML = word;
+                node.addEventListener("mouseover", function () {
+                    document.getElementById("translation").innerHTML = dict[word];
+                });
+                node.addEventListener("mouseout", function () {
+                    document.getElementById("translation").innerHTML = "";
+                });
+                const blank = document.createElement("span");
+                blank.innerHTML = " ";
+                document.getElementById("septext").appendChild(node);
+                document.getElementById("septext").appendChild(blank);
+
+            }
+        }
+        //showing display text
+        const oritext = document.getElementById("oritext").innerHTML
+        makeSepText(oritext)
+
+        //dictionary data
+        var dict = {
+            "aku": "I",
+            "suka": "like",
+            "kamu": "you"
+        };
+
+    </script>
+</body>
+
+</html>

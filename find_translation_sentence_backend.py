@@ -1,5 +1,5 @@
 import json
-import get_translation_function
+import get_translation_function as g
 
 import flask
 from flask import Flask, request
@@ -7,15 +7,6 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
-def findtranslation (malayword):
-    with open("malay-eng-dict.json", "r") as f:
-        data = json.load(f)
-        if malayword not in data:
-            return ("Sorry, word not found.")
-        else:
-            engword = data[malayword]
-            return f"English translation(s): {engword}"
 
 @app.route("/")
 def hello():
@@ -32,9 +23,8 @@ def words():
 
     if request.method == "POST":
         received_data = request.get_json()
-        print(f"received data: {received_data}")
         message = received_data['data']
-        return_data = findtranslation(message)
+        return_data = json.dumps(g.findtranslations(message))
         return flask.Response(response=return_data, status=201)
 
 if __name__ == "__main__":

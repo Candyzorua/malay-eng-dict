@@ -1,4 +1,5 @@
 import json
+import get_translation_function
 
 import flask
 from flask import Flask, request

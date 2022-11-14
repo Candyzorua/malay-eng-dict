@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <button onclick="makeSepText(this.innerHTML)">aku suka kamu</button>
-    <div id="septext"></div>
-    <p id="translation"></p>
+    <p id="oritext">aku, suka kamu.</p>
+    <h1 id="septext"></h1>
+    <h2 id="translation"></h2>
     <script>
         function makeSepText(textChunk) {
             const oriTextArray = textChunk.split(" ");
@@ -32,12 +32,30 @@
             for (const word of newTextArray) {
                 const node = document.createElement("span");
                 node.innerHTML = word;
+                node.addEventListener("mouseover", function () {
+                    document.getElementById("translation").innerHTML = dict[word];
+                });
+                node.addEventListener("mouseout", function () {
+                    document.getElementById("translation").innerHTML = "";
+                });
                 const blank = document.createElement("span");
                 blank.innerHTML = " ";
                 document.getElementById("septext").appendChild(node);
                 document.getElementById("septext").appendChild(blank);
+
             }
         }
+        //showing display text
+        const oritext = document.getElementById("oritext").innerHTML
+        makeSepText(oritext)
+
+        //dictionary data
+        var dict = {
+            "aku": "I",
+            "suka": "like",
+            "kamu": "you"
+        };
+
     </script>
 </body>
 

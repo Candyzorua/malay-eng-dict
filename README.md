@@ -7,4 +7,4 @@ malay-eng-dict-obtainer.py: a web scraping program that outputs a json file of M
 
 malay-eng-dict.json: a json file of Malay words and their English translations.
 
-find_translation_sentence: a website that allows users to input a Malay sentence and outputs the same sentence but hovering over each word shows the English translation below.
+find_translation_sentence: a webpage that allows users to input a Malay sentence and outputs the same sentence but hovering over each word shows the English translation below.

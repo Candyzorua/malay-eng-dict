@@ -8,18 +8,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
-def hello():
-    return "Hello, World!"
-
-@app.route('/words', methods=["GET", "POST"])
+@app.route('/words', methods=["POST"])
 def words():
     print("words endpoint reached...")
-
-    if request.method == "GET":
-        with open("malay-eng-dict.json", "r") as f:
-            data = json.load(f)
-            return flask.jsonify(data)
 
     if request.method == "POST":
         received_data = request.get_json()

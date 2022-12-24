@@ -1,10 +1,10 @@
-<html>
-<header>
-    <title>Malay-English Dictionary</title>
-    <style>
+<!DOCTYPE html>
+<html lang="en">
 
-    </style>
-</header>
+<head>
+    <meta charset="UTF-8">
+    <title>Malay-English Dictionary</title>
+</head>
 
 <body>
     <div><span>Last update: </span><span id="time-container"></span></div>
@@ -21,6 +21,7 @@
     </div>
     <hr>
 </body>
+
 <script>
     var xhr = null;
     getXmlHttpRequestObject = function () {
@@ -47,10 +48,9 @@
             getDate();
             // Set current data text
             response = xhr.responseText;
-            const translationsdict = JSON.parse(response)
-            console.log(translationsdict)
+            const translationsdict = JSON.parse(response);
             for (const word in translationsdict) {
-                console.log(word)
+                console.log(word);
                 const node = document.createElement("span");
                 node.innerHTML = word;
                 node.addEventListener("mouseover", function () {
@@ -60,7 +60,7 @@
                     document.getElementById("engtext").innerHTML = "";
                 });
                 const blank = document.createElement("span");
-                blank.innerHTML = " "
+                blank.innerHTML = " ";
                 document.getElementById("malaytext").appendChild(node);
                 document.getElementById("malaytext").appendChild(blank);
             }

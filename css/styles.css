@@ -1,6 +1,3 @@
-.date-display {
-    display: none;
-}
 
 body {
     background-color: rgba(243, 243, 243, 0.876);
@@ -37,8 +34,21 @@ body {
 
 textarea {
     font-family: 'Lexend', sans-serif;
+    line-height: 2.2;
     margin-left: 3%;
     padding: 3%;
+}
+
+.creator-message {
+    color: black;
+    font-family: 'Alata', sans-serif;
+    font-size: small;
+    padding-left: 3%;
+    padding-top: 5%;
+}
+
+.heart-icon {
+    color: rgb(232, 36, 36);
 }
 
 /* right section */
@@ -52,6 +62,17 @@ textarea {
     font-family: 'Lexend', sans-serif;
     margin-left: 3%;
     padding-top: 3%;
+}
+
+.output-malay-word {
+    font-size: medium;
+    color: rgb(9, 44, 44);
+    text-decoration: none;
+}
+
+.output-malay-word:hover {
+    color: rgb(48, 106, 106);
+    text-decoration: none;
 }
 
 

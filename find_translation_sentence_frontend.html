@@ -28,39 +28,36 @@
     <div class="container">
         <div class="row">
             <div class="left-section col py-5">
-                <div class="date-display">
-                    <span>Last update: </span><span id="time-container"></span>
-                </div>
                 <form>
                     <h1 class="io-header">Your Malay sentence:</h1>
                     <br>
-                    <textarea rows="20" cols="60" id="data-input" spellcheck="false"></textarea>
+                    <textarea rows="12" cols="60" id="data-input" spellcheck="false"></textarea>
                     <br>
                     <input class="submit-button btn btn-outline-dark" type="button" value="Submit" onclick="sendData()">
-                    <input class="clear-button btn btn-outline-danger" type="button" value="Clear" onclick="clearData()">
+                    <input class="clear-button btn btn-outline-danger" type="button" value="Clear"
+                        onclick="clearData()">
+                    <p class="creator-message">Made with <i class="heart-icon fa-solid fa-heart"></i> by Jiaying Ong.</p>
                 </form>
             </div>
             <div class="right-section col py-5">
                 <h1 class="io-header"> Translated version:</h1>
-                <h2 id="malaytext">malaytext</h2>
-                <h3 id="engtext">engtext</h3>
+                <h2 id="malaytext"></h2>
             </div>
         </div>
     </div>
 
     <!--Scripts-->
 
-    <!--Bootstrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-        crossorigin="anonymous"></script>
+    <!--Popper and Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         crossorigin="anonymous"></script>
 
     <!--Vanilla JS-->
     <script>
-
         // Creating xhr
         var xhr = null;
         getXmlHttpRequestObject = function () {
@@ -71,54 +68,44 @@
             return xhr;
         };
 
-        // Getting date
-        function getDate() {
-            date = new Date().toString();
-            document.getElementById('time-container').textContent
-                = date;
-        }
-
-        (function () {
-            getDate();
-        })();
-
         // Sending data and handling response
         function sendDataCallback() {
             // Check response is ready or not
             if (xhr.readyState == 4 && xhr.status == 201) {
                 console.log("Data creation response received!");
-                // Load date
-                getDate();
                 // Load response into translationdict variable
                 response = xhr.responseText;
                 const translationsdict = JSON.parse(response);
                 // Clear output zone
-                document.getElementById("engtext").innerHTML = "";
                 document.getElementById("malaytext").innerHTML = "";
                 // Load dynamic Malay words into output zone from translationdict
                 for (const word in translationsdict) {
                     console.log(word);
-                    const node = document.createElement("span");
+                    const node = document.createElement("a");
                     node.classList.add("output-malay-word");
                     node.innerHTML = translationsdict[word][1];
-                    node.addEventListener("mouseover", function () {
-                        document.getElementById("engtext").innerHTML = translationsdict[word][0];
-                    });
-                    node.addEventListener("mouseout", function () {
-                        document.getElementById("engtext").innerHTML = "";
-                    });
+                    node.setAttribute("data-bs-trigger", "hover");
+                    node.setAttribute("data-bs-container", "body");
+                    node.setAttribute("data-bs-toggle", "popover");
+                    node.setAttribute("data-bs-placement", "top");
+                    node.setAttribute("data-bs-content", translationsdict[word][0]);
                     // Create space between words
                     const blank = document.createElement("span");
+                    blank.classList.add("output-malay-word");
                     blank.innerHTML = " ";
                     // Putting words and spaces into output zone
                     document.getElementById("malaytext").appendChild(node);
                     document.getElementById("malaytext").appendChild(blank);
                 }
                 // add blank lines at bottom of output zone
-                const lineBreak = document.createElement("br")
-                document.getElementById("malaytext").appendChild(lineBreak)
-                document.getElementById("malaytext").appendChild(lineBreak)
-                document.getElementById("malaytext").appendChild(lineBreak)
+                const lineBreak = document.createElement("br");
+                document.getElementById("malaytext").appendChild(lineBreak);
+                document.getElementById("malaytext").appendChild(lineBreak);
+                document.getElementById("malaytext").appendChild(lineBreak);
+
+                // Enabling popovers
+                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
             }
         }
 
@@ -144,7 +131,6 @@
                 getValue.value = "";
             }
             translationsdict = {}
-            document.getElementById("engtext").innerHTML = "";
             document.getElementById("malaytext").innerHTML = "";
             document.getElementById("text").innerHTML = "";
         }

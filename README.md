@@ -6,6 +6,7 @@ Any chunk of Malay text can be inputted. After submitting, users can hover over 
 Completed, with some functionalities remaining to be added.
 
 ## TODO:
+- Host website on the cloud using Google App Services or other service provider.
 - Fix bug where line breaks in the input are deleted in the output.
 - Add GitHub and LinkedIn links.
 - Update malay-eng-dict.json with more dictionary entries.

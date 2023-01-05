@@ -20,7 +20,7 @@
                 <form>
                     <label for="data-input">Your Malay sentence:</label>
                     <br>
-                    <textarea rows="20" cols="60" id="data-input"></textarea>
+                    <textarea rows="20" cols="60" id="data-input" spellcheck="false"></textarea>
                     <br>
                     <input type="button" value="Submit" onclick="sendData()">
                     <input type="button" value="Clear" onclick="clearData()">
@@ -68,9 +68,13 @@
             if (xhr.readyState == 4 && xhr.status == 201) {
                 console.log("Data creation response received!");
                 getDate();
-                // Set current data text
+                // Load response into variable
                 response = xhr.responseText;
                 const translationsdict = JSON.parse(response);
+                // Reset output
+                document.getElementById("engtext").innerHTML = "";
+                document.getElementById("malaytext").innerHTML = "";
+                // Load output
                 for (const word in translationsdict) {
                     console.log(word);
                     const node = document.createElement("span");

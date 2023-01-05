@@ -1,10 +1,17 @@
 # malay-eng-dict
 A web application to help English-speaking learners of Malay and Malay-speaking learners of English. 
 
-Still in development!
+Any chunk of Malay text can be inputted. After submitting, users can hover over any Malay word to view the English translation as a popover, if the English translation is available.
 
-malay-eng-dict-obtainer.py: a web scraping program that outputs a json file of Malay words and their English translations. All data from http://dictionary.bhanot.net.
+Completed, with some functionalities remaining to be added.
+
+## TODO:
+- Fix bug where line breaks in the input are deleted in the output.
+- Add GitHub and LinkedIn links.
+- Update malay-eng-dict.json with more dictionary entries.
+- Enable users to login and keep a record of dictionary entries that they wish to remember.
+
+malay-eng-dict-obtainer.py: A web scraping program scrapes http://dictionary.bhanot.net and returns malay-eng-dict.json.
 
 malay-eng-dict.json: a json file of Malay words and their English translations.
 
-find_translation_sentence: a webpage that allows users to input a Malay sentence and outputs the same sentence but hovering over each word shows the English translation below.

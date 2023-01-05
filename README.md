@@ -11,6 +11,7 @@ Completed, with some functionalities remaining to be added.
 - Host website on the cloud using Google App Services or another service provider.
 - Fix bug where line breaks in the input are deleted in the output.
 - Add GitHub and LinkedIn links.
+- Look into connecting the Google Translate API to additionally show actual translation of the text chunk.
 - Update malay-eng-dict.json with more dictionary entries.
 - Enable users to login and keep a record of dictionary entries that they wish to remember.
 

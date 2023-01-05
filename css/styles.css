@@ -1,3 +1,42 @@
 .date-display {
     display: none;
 }
+
+body {
+    background-color: rgba(243, 243, 243, 0.876);
+}
+
+/* navbar */
+.nav-title {
+    font-family: 'Alata', sans-serif;
+    font-size: large;
+}
+
+/* left section */
+.input-header {
+    font-family: 'Lexend', sans-serif;
+    font-size: x-large;
+    padding: 2% 3%;
+}
+
+.btn {
+    font-family: 'Lexend', sans-serif;
+}
+
+.submit-button {
+    margin-left: 3%;
+    margin-top: 2%;
+    padding: 1% 5%;
+}
+
+.clear-button {
+    margin-left: 1%;
+    margin-top: 2%;
+    padding: 1% 5%;
+}
+
+textarea {
+    font-family: 'Lexend', sans-serif;
+    margin-left: 3%;
+    padding: 3%;
+}

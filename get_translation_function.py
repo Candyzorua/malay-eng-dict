@@ -1,7 +1,8 @@
 import re
 import json
-example_input = "Aku Suka"
 
+#for unit testing
+example_input = "Aku Suka Suka"
 
 def cleanwords(rawWordString: str) -> list[str]:
     noPunctWords = []
@@ -11,8 +12,8 @@ def cleanwords(rawWordString: str) -> list[str]:
         noPunctWords.append(noPunctString)
     return noPunctWords
 
-print(example_input.split(" "))
-print(cleanwords(example_input))
+assert (example_input.split(" ")) == ['Aku', 'Suka', 'Suka']
+assert (cleanwords(example_input)) == ['aku', 'suka', 'suka']
 
 def findtranslations(rawWordString: str) -> dict:
     rawMalayWords = rawWordString.split(" ")
@@ -27,4 +28,6 @@ def findtranslations(rawWordString: str) -> dict:
                 translation = "n/a"
             translationsDict[rawMalayWords[i]] = translation
     return translationsDict
+
+assert (findtranslations(example_input)) == {'Aku': 'me; I', 'Suka': 'like; enjoy', 'Suka': 'like; enjoy'}
 

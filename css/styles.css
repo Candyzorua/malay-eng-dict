@@ -40,3 +40,18 @@ textarea {
     margin-left: 3%;
     padding: 3%;
 }
+
+/* right section */
+.io-header {
+    font-family: 'Lexend', sans-serif;
+    font-size: x-large;
+    padding: 0.2% 3%;
+}
+
+#malaytext {
+    font-family: 'Lexend', sans-serif;
+    margin-left: 3%;
+    padding-top: 3%;
+}
+
+

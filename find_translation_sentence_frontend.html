@@ -32,7 +32,7 @@
                     <span>Last update: </span><span id="time-container"></span>
                 </div>
                 <form>
-                    <label class=input-header for="data-input">Your Malay sentence:</label>
+                    <h1 class="io-header">Your Malay sentence:</h1>
                     <br>
                     <textarea rows="20" cols="60" id="data-input" spellcheck="false"></textarea>
                     <br>
@@ -40,9 +40,10 @@
                     <input class="clear-button btn btn-outline-danger" type="button" value="Clear" onclick="clearData()">
                 </form>
             </div>
-            <div class="col py-5">
-                <h1 id="malaytext">malaytext</h1>
-                <h2 id="engtext">engtext</h2>
+            <div class="right-section col py-5">
+                <h1 class="io-header"> Translated version:</h1>
+                <h2 id="malaytext">malaytext</h2>
+                <h3 id="engtext">engtext</h3>
             </div>
         </div>
     </div>
@@ -57,7 +58,10 @@
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
 
+    <!--Vanilla JS-->
     <script>
+
+        // Creating xhr
         var xhr = null;
         getXmlHttpRequestObject = function () {
             if (!xhr) {
@@ -67,6 +71,7 @@
             return xhr;
         };
 
+        // Getting date
         function getDate() {
             date = new Date().toString();
             document.getElementById('time-container').textContent
@@ -77,21 +82,24 @@
             getDate();
         })();
 
+        // Sending data and handling response
         function sendDataCallback() {
             // Check response is ready or not
             if (xhr.readyState == 4 && xhr.status == 201) {
                 console.log("Data creation response received!");
+                // Load date
                 getDate();
-                // Load response into variable
+                // Load response into translationdict variable
                 response = xhr.responseText;
                 const translationsdict = JSON.parse(response);
-                // Reset output
+                // Clear output zone
                 document.getElementById("engtext").innerHTML = "";
                 document.getElementById("malaytext").innerHTML = "";
-                // Load output
+                // Load dynamic Malay words into output zone from translationdict
                 for (const word in translationsdict) {
                     console.log(word);
                     const node = document.createElement("span");
+                    node.classList.add("output-malay-word");
                     node.innerHTML = word;
                     node.addEventListener("mouseover", function () {
                         document.getElementById("engtext").innerHTML = translationsdict[word];
@@ -99,11 +107,18 @@
                     node.addEventListener("mouseout", function () {
                         document.getElementById("engtext").innerHTML = "";
                     });
+                    // Create space between words
                     const blank = document.createElement("span");
                     blank.innerHTML = " ";
+                    // Putting words and spaces into output zone
                     document.getElementById("malaytext").appendChild(node);
                     document.getElementById("malaytext").appendChild(blank);
                 }
+                // add blank lines at bottom of output zone
+                const lineBreak = document.createElement("br")
+                document.getElementById("malaytext").appendChild(lineBreak)
+                document.getElementById("malaytext").appendChild(lineBreak)
+                document.getElementById("malaytext").appendChild(lineBreak)
             }
         }
 
@@ -116,13 +131,13 @@
             console.log("Sending data: " + dataToSend);
             xhr = getXmlHttpRequestObject();
             xhr.onreadystatechange = sendDataCallback;
-            // asynchronous requests
             xhr.open("POST", "http://localhost:6969/words", true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             // Send the request over the network
             xhr.send(JSON.stringify({ "data": dataToSend }));
         }
 
+        // Clearing textarea and output zone
         function clearData() {
             var getValue = document.getElementById("data-input");
             if (getValue.value != "") {

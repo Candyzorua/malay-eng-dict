@@ -16,7 +16,8 @@ def words():
         received_data = request.get_json()
         message = received_data['data']
         return_data = json.dumps(g.findtranslations(message))
+        print(g.findtranslations(message))
         return flask.Response(response=return_data, status=201)
-
+    
 if __name__ == "__main__":
     app.run("localhost", 6969)

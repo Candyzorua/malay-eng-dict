@@ -1,4 +1,6 @@
 # malay-eng-dict
+![example-image](https://github.com/Candyzorua/malay-eng-dict/blob/master/malay-eng-dict-example-image.jpeg?raw=true)
+
 A web application to help English-speaking learners of Malay and Malay-speaking learners of English. 
 
 Any chunk of Malay text can be inputted. After submitting, users can hover over any Malay word to view the English translation as a popover, if the English translation is available.

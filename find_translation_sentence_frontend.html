@@ -100,9 +100,9 @@
                     console.log(word);
                     const node = document.createElement("span");
                     node.classList.add("output-malay-word");
-                    node.innerHTML = word;
+                    node.innerHTML = translationsdict[word][1];
                     node.addEventListener("mouseover", function () {
-                        document.getElementById("engtext").innerHTML = translationsdict[word];
+                        document.getElementById("engtext").innerHTML = translationsdict[word][0];
                     });
                     node.addEventListener("mouseout", function () {
                         document.getElementById("engtext").innerHTML = "";

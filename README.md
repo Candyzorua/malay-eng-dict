@@ -16,7 +16,7 @@ Completed, with some functionalities remaining to be added.
 - find_translation_sentence_frontend.html: uses Bootstrap for styling and vanilla JS for AJAX as well as the main functionality.
 - find_translation_sentence_backend.py: a Flask API that interacts with the frontend and malay-eng-dict.json.
 - get_translation_function.py: deals with malay-eng-dict.json; used in find_translation_sentence_backend.py.
-- malay-eng-dict-obtainer.py: a web scraping program that scrapes http://dictionary.bhanot.net and returns malay-eng-dict.json.
+- malay-eng-dict-obtainer.py: uses BeautifulSoup, Requests, and regex to scrape and clean data from http://dictionary.bhanot.net and returns malay-eng-dict.json.
 - malay-eng-dict.json: a json file of Malay words and their English translations.
 - styles.css: additional styling.
 

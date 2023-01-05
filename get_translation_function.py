@@ -21,13 +21,17 @@ def findtranslations(rawWordString: str) -> dict:
     translationsDict = {}
     with open("malay_eng_dict.json", "r") as f:
         malayDict = json.load(f)
+        index = 0 
+        #each dictionary entry must have an index, to prevent the keys for two entries for the same word from
+        #being exactly alike, which will cause problems whem the dictionary is parsed into a JavaScript object
         for i in range(0, (len(cleanMalayWords))):
+            index += 1
             if cleanMalayWords[i] in malayDict:
                 translation = malayDict[cleanMalayWords[i]]
             else:
                 translation = "n/a"
-            translationsDict[rawMalayWords[i]] = translation
+            translationsDict[index] = [translation, rawMalayWords[i]]
     return translationsDict
 
-assert (findtranslations(example_input)) == {'Aku': 'me; I', 'Suka': 'like; enjoy', 'Suka': 'like; enjoy'}
+assert (findtranslations(example_input)) == {1: ['me; I', 'Aku'], 2 : ['like; enjoy', 'Suka'], 3 : ['like; enjoy', 'Suka']}
 

@@ -12,7 +12,7 @@ Completed, with some functionalities remaining to be added.
 - Update malay-eng-dict.json with more dictionary entries.
 - Enable users to login and keep a record of dictionary entries that they wish to remember.
 
-malay-eng-dict-obtainer.py: A web scraping program scrapes http://dictionary.bhanot.net and returns malay-eng-dict.json.
-
-malay-eng-dict.json: a json file of Malay words and their English translations.
+## FILES:
+- malay-eng-dict-obtainer.py: A web scraping program scrapes http://dictionary.bhanot.net and returns malay-eng-dict.json.
+- malay-eng-dict.json: a json file of Malay words and their English translations.
 

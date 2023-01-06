@@ -58,22 +58,21 @@
 
     <!--Vanilla JS-->
     <script>
-        // Creating xhr
+        // Creating new xhr
         var xhr = null;
         getXmlHttpRequestObject = function () {
             if (!xhr) {
-                // Create a new XMLHttpRequest object 
                 xhr = new XMLHttpRequest();
             }
             return xhr;
         };
 
-        // Sending data and handling response
+        // Handling response
         function sendDataCallback() {
             // Check response is ready or not
             if (xhr.readyState == 4 && xhr.status == 201) {
                 console.log("Data creation response received!");
-                // Load response into translationdict variable
+                // Load response into translationdict JavaScript
                 response = xhr.responseText;
                 const translationsdict = JSON.parse(response);
                 // Clear output zone
@@ -97,7 +96,7 @@
                     document.getElementById("malaytext").appendChild(node);
                     document.getElementById("malaytext").appendChild(blank);
                 }
-                // add blank lines at bottom of output zone
+                // add blank lines at bottom of output zone (to ensure bottom padding of output zone)
                 const lineBreak = document.createElement("br");
                 document.getElementById("malaytext").appendChild(lineBreak);
                 document.getElementById("malaytext").appendChild(lineBreak);
@@ -109,6 +108,7 @@
             }
         }
 
+        // Sending data
         function sendData() {
             dataToSend = document.getElementById('data-input').value;
             if (!dataToSend) {

@@ -10,7 +10,7 @@ Completed, with some functionalities remaining to be added.
 ## HOW TO RUN:
 - Ensure all packages denoted in requirements.txt are installed.
 - Run find_translation_sentence_backend.py
-- Open find_translation_sentence.html in your web browser.
+- Open find_translation_sentence_frontend.html in your web browser.
 
 ## TODO:
 - Host website on the cloud using Google App Services or another service provider.

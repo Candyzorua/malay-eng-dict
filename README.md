@@ -8,9 +8,9 @@ Any chunk of Malay text can be inputted. After submitting, users can hover over 
 Completed, with some functionalities remaining to be added.
 
 ## HOW TO RUN:
-- ensure all packages denoted in requirements.txt are installed.
-- run find_translation_sentence_backend.py
-- open find_translation_sentence.html in your web browser.
+- Ensure all packages denoted in requirements.txt are installed.
+- Run find_translation_sentence_backend.py
+- Open find_translation_sentence.html in your web browser.
 
 ## TODO:
 - Host website on the cloud using Google App Services or another service provider.

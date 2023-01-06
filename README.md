@@ -19,6 +19,7 @@ Completed, with some functionalities remaining to be added.
 - Look into connecting the Google Translate API to additionally show actual translation of the text chunk.
 - Update malay-eng-dict.json with more dictionary entries.
 - Enable users to login and keep a record of dictionary entries that they wish to remember.
+- Implement fuzzy logic whereby translations of similar words are provided if the translation is 'n/a' for a particular Malay word.
 
 ## FILES:
 - find_translation_sentence_frontend.html: uses Bootstrap for styling and vanilla JS for AJAX as well as the main functionality.
